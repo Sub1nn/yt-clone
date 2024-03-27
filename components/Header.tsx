@@ -14,7 +14,7 @@ import Link from 'next/link'
 export default function Header() {
 	return (
 		<header className="px-4 py-2.5 flex justify-between items-center gap-32">
-			<section className="flex items-center gap-5">
+			<section className="flex items-center gap-5 pl-3">
 				<button>
 					<Menu />
 				</button>
