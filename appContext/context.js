@@ -1,11 +1,11 @@
 "use client";
 
 import { FetchDataFromApi } from "../utils/api";
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 
-const Context = createContext();
+export const Context = createContext();
 
-const AppContext = ({ children }) => {
+export const AppContext = ({ children }) => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("new");
 
@@ -17,7 +17,7 @@ const AppContext = ({ children }) => {
       setData(response?.contents || []);
     };
     fetchData();
-  }, [query]);
+  }, []);
 
   const value = {
     data,
@@ -28,5 +28,3 @@ const AppContext = ({ children }) => {
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
-
-export default AppContext;
