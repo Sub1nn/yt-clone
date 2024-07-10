@@ -4,6 +4,9 @@ const nextConfig = {
   experimental: {
     suppressComponentDidCatchWarning: true,
   },
+  images: {
+    domains: ["i.ytimg.com"],
+  },
 };
 
 export default nextConfig;
