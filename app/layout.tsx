@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-import AppContext from "../appContext/context";
+import { AppContext } from "../appContext/context";
 
 const inter = Inter({ subsets: ["latin"] });
 
