@@ -36,43 +36,46 @@ export default function Sidebar({}: Props) {
         })}
       >
         {sidebarData.map((data, index) => (
-          <>
-            {" "}
+          <React.Fragment key={index}>
             {data.title && (
               <section className="px-4 w-full">
                 <SidebarItem
                   activeIcon={data.activeIcon}
                   defaultIcon={data.defaultIcon}
                   isSidebarOpen={isSidebarOpen}
-                  key={index}
                   path={data.path}
                   title={data.title}
+                  query={data.query}
+                  key={`sidebar-item-${index}`}
                 />
               </section>
             )}
-            {/* Nested items */}
             {data.nestedItems &&
               isSidebarOpen &&
               data.nestedItems.length > 0 && (
-                <section className="px-4 w-full border-t border-zinc-600 mt-4 pt-4">
+                <section
+                  className="px-4 w-full border-t border-zinc-600 mt-4 pt-4"
+                  key={`nested-section-${index}`}
+                >
                   {data.sectionTitle && (
                     <p className="px-3 mb-2 text-slate-300">
                       {data.sectionTitle}
                     </p>
                   )}
-                  {data.nestedItems.map((nestedItem, index) => (
+                  {data.nestedItems.map((nestedItem, nestedIndex) => (
                     <SidebarItem
+                      key={`nested-item-${index}-${nestedIndex}`}
                       activeIcon={nestedItem.activeIcon}
                       defaultIcon={nestedItem.defaultIcon}
                       isSidebarOpen={isSidebarOpen}
-                      key={index}
                       path={nestedItem.path}
                       title={nestedItem.title}
+                      query={nestedItem.query}
                     />
                   ))}
                 </section>
               )}
-          </>
+          </React.Fragment>
         ))}
         {isSidebarOpen && (
           <section className="px-4 flex flex-col text-zinc-400 gap-3  w-full border-t border-zinc-600 mt-4 pt-4 text-sm font-semibold">
@@ -93,6 +96,7 @@ export default function Sidebar({}: Props) {
 }
 
 type SidebarItemProps = {
+  query?: string;
   title: string | undefined;
   defaultIcon: React.ReactNode;
   activeIcon: React.ReactNode;
