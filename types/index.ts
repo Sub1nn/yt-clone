@@ -1,4 +1,5 @@
 export type SidebarItemProps = {
+  query?: string;
   title?: string;
   path?: string;
   defaultIcon?: React.ReactNode; // ReactNode is a type that can be anything that can be rendered in React (string, number, element, fragment, html, jsx etc)
