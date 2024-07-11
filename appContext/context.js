@@ -17,7 +17,7 @@ export const AppContext = ({ children }) => {
       setData(response?.contents || []);
     };
     fetchData();
-  }, []);
+  }, [query]);
 
   const value = {
     data,
