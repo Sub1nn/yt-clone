@@ -5,9 +5,10 @@ import { AlignJustify } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useContext } from "react";
 import HoverDiv from "./ui/HoverDiv";
 import { sidebarData } from "./SidebarData";
+import { Context } from "../appContext/context";
 
 type Props = {};
 
@@ -105,11 +106,18 @@ type SidebarItemProps = {
 };
 
 function SidebarItem(props: SidebarItemProps) {
+  const { setQuery, query } = useContext(Context);
   const pathname = usePathname();
   const href = props.path || "/";
+
+  const handleClick = () => {
+    setQuery(props.query);
+  };
+
   return (
-    <Link href={href}>
+    <Link href={`/?category=${props.query}`}>
       <HoverDiv
+        onClick={handleClick}
         isActive={pathname === props.path}
         className={cn("w-full flex items-center gap-5", {
           "flex-col gap-2": !props.isSidebarOpen,
